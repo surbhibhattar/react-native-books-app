@@ -1,8 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BooksList from "./BooksList";
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -10,6 +14,16 @@ export default function App() {
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

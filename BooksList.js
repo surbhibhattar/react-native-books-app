@@ -1,19 +1,40 @@
-import { StyleSheet, Text, View, FlatList, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  Pressable,
+} from "react-native";
 import { booksList } from "./StaticData";
 
 const Card = ({ name, author, icon }) => {
+  const onCardClick = () => {
+    console.log("card clicked!");
+  };
+
   return (
-    <View style={styles.card}>
-      <View>
-        <Image style={styles.icon} source={require(`./assets/${icon}`)} />
+    <Pressable
+      onPress={onCardClick}
+      style={({ pressed }) => [
+        {
+          backgroundColor: pressed ? "rgb(210, 230, 255)" : "white",
+        },
+        styles.wrapperCustom,
+      ]}
+    >
+      <View style={styles.card}>
+        <View>
+          <Image style={styles.icon} source={require(`./assets/${icon}`)} />
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.bookName} numberOfLines={1}>
+            {name}
+          </Text>
+          <Text>{author}</Text>
+        </View>
       </View>
-      <View style={{flex:1}}>
-        <Text style={styles.bookName} numberOfLines={1}>
-          {name}
-        </Text>
-        <Text>{author}</Text>
-      </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -34,13 +55,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
   card: {
-    backgroundColor: "#DDDDDD",
+    // backgroundColor: "#DDDDDD",
     padding: 10,
     margin: 10,
     flexDirection: "row",
@@ -54,6 +70,10 @@ const styles = StyleSheet.create({
   },
   bookName: {
     fontSize: 20,
-    fontWeight:'bold'
+    fontWeight: "bold",
+  },
+  wrapperCustom: {
+    borderRadius: 8,
+    padding: 6,
   },
 });
