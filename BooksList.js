@@ -8,9 +8,15 @@ import {
 } from "react-native";
 import { booksList } from "./StaticData";
 
-const Card = ({ name, author, icon }) => {
+const Card = ({ name, author, icon, description, navigation }) => {
   const onCardClick = () => {
     console.log("card clicked!");
+    navigation.navigate("Details", {
+      name: name,
+      author: author,
+      icon: icon,
+      description: description,
+    });
   };
 
   return (
@@ -38,12 +44,12 @@ const Card = ({ name, author, icon }) => {
   );
 };
 
-export default function BooksList() {
+export default function BooksList({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
         data={booksList}
-        renderItem={({ item }) => <Card {...item} />}
+        renderItem={({ item }) => <Card navigation={navigation} {...item} />}
         keyExtractor={(item) => item.id}
       />
     </View>
@@ -56,7 +62,6 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   card: {
-    // backgroundColor: "#DDDDDD",
     padding: 10,
     margin: 10,
     flexDirection: "row",

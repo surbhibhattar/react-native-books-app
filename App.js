@@ -3,14 +3,15 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BooksList from "./BooksList";
+import BookDetails from "./BookDetails";
 
 const Stack = createNativeStackNavigator();
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <BooksList />
+        <BooksList navigation={navigation} />
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
@@ -20,8 +21,9 @@ function HomeScreen() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={BookDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
