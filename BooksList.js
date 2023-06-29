@@ -10,7 +10,6 @@ import { booksList } from "./StaticData";
 
 const Card = ({ name, author, icon, description, navigation }) => {
   const onCardClick = () => {
-    console.log("card clicked!");
     navigation.navigate("Details", {
       name: name,
       author: author,
@@ -31,7 +30,7 @@ const Card = ({ name, author, icon, description, navigation }) => {
     >
       <View style={styles.card}>
         <View>
-          <Image style={styles.icon} source={require(`./assets/${icon}`)} />
+          <Image style={styles.icon} source={icon} />
         </View>
         <View style={{ flex: 1 }}>
           <Text style={styles.bookName} numberOfLines={1}>

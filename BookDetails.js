@@ -1,12 +1,12 @@
-import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 const BookDetails = ({ route }) => {
   const { name, author, icon, description } = route.params;
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <ScrollView>
       <View style={styles.container}>
-        <Image style={styles.image} source={require(`./assets/${icon}`)} />
+        <Image style={styles.image} source={icon} />
         <View style={styles.details}>
           <Text style={styles.title}>{name}</Text>
           <Text style={styles.author}>{author}</Text>
@@ -14,21 +14,18 @@ const BookDetails = ({ route }) => {
         </View>
         <StatusBar style="auto" />
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
   },
   image: {
     width: "100%",
-    height: "80%",
+    height: 500,
     resizeMode: "stretch",
   },
   title: {
